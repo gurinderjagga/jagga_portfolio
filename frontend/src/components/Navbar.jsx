@@ -14,7 +14,19 @@ export default function Navbar() {
   const [activeId, setActiveId] = useState('home');
   
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0, opacity: 0 });
+  /* Below 768px the links live in an off-screen drawer. Off-screen is still
+     focusable, so a closed drawer has to be marked inert or keyboard users
+     tab through four invisible links. */
+  const [isDrawer, setIsDrawer] = useState(false);
   const linksRef = useRef([]);
+
+  useEffect(() => {
+    const query = window.matchMedia('(max-width: 768px)');
+    const sync = () => setIsDrawer(query.matches);
+    sync();
+    query.addEventListener('change', sync);
+    return () => query.removeEventListener('change', sync);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -109,7 +121,11 @@ export default function Navbar() {
           </a>
         </motion.div>
 
-        <div className={`navbar__links ${menuOpen ? 'navbar__links--open' : ''}`}>
+        <div
+          id="navbar-links"
+          className={`navbar__links ${menuOpen ? 'navbar__links--open' : ''}`}
+          inert={isDrawer && !menuOpen}
+        >
           {navLinks.map(({ id, label }, index) => {
             const isActive = activeId === id;
             return (
@@ -125,6 +141,7 @@ export default function Navbar() {
             );
           })}
           <motion.span
+            aria-hidden="true"
             className="navbar__link-indicator"
             initial={false}
             animate={indicatorStyle}
@@ -148,14 +165,17 @@ export default function Navbar() {
         </div>
 
         <button
+          type="button"
           className={`navbar__hamburger ${menuOpen ? 'navbar__hamburger--open' : ''}`}
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle navigation menu"
+          aria-expanded={menuOpen}
+          aria-controls="navbar-links"
           id="nav-hamburger"
         >
-          <span />
-          <span />
-          <span />
+          <span aria-hidden="true" />
+          <span aria-hidden="true" />
+          <span aria-hidden="true" />
         </button>
       </div>
 

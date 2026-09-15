@@ -50,7 +50,7 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" className="hero" ref={sectionRef}>
+    <section id="home" className="hero" ref={sectionRef} aria-labelledby="hero-title">
       <div className="hero__particles">
         <motion.div className="hero__particle hero__particle--1" style={{ y: particle1Y }} />
       </div>
@@ -67,7 +67,7 @@ export default function Hero() {
             <div className="hero__card-overlay" />
           </div>
           <div className="hero__card-content">
-            <h1 className="hero__title">
+            <h1 className="hero__title" id="hero-title">
               <motion.span
                 className="hero__title-line"
                 initial={{ opacity: 0, y: 25 }}

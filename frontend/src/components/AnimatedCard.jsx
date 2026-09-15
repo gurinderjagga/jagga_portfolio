@@ -11,6 +11,7 @@ export default function AnimatedCard({
   enableTilt = true,
   id,
   onClick,
+  tabIndex,
 }) {
   const ref = useRef(null);
   const mouseX = useMotionValue(0.5);
@@ -43,6 +44,10 @@ export default function AnimatedCard({
       id={id}
       className={className}
       onClick={onClick}
+      /* Motion adds tabindex="0" to anything with a tap handler. Pass -1 when
+         a real control inside the card owns keyboard access, so the card
+         itself does not become an empty stop in the tab order. */
+      tabIndex={tabIndex}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={

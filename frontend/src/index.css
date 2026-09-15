@@ -178,6 +178,55 @@ a {
   color: inherit;
 }
 
+/* --- Keyboard Focus ---
+   One ring for everything reachable by keyboard. Inputs opt out because
+   .contact__input:focus already draws its own. */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+.contact__input:focus-visible {
+  outline: none;
+}
+
+/* --- Screen-reader-only text ---
+   Available to assistive tech, removed from the visual layout. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --- Skip Link ---
+   Off-screen until focused, then pinned below the fixed navbar. */
+.skip-link {
+  position: fixed;
+  top: var(--space-4);
+  left: var(--space-4);
+  z-index: 1100;
+  padding: var(--space-3) var(--space-5);
+  background: var(--color-accent);
+  color: var(--color-btn-text);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(calc(-100% - var(--space-6)));
+  transition: transform var(--transition-base);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
 img {
   max-width: 100%;
   height: auto;

@@ -59,11 +59,11 @@ const services = [
 
 export default function Services() {
   return (
-    <AnimatedSection id="services">
+    <AnimatedSection id="services" labelledBy="services-title">
       <AnimatedItem>
         <div className="section-header">
           <span className="section-label">Our Capabilities</span>
-          <h2 className="section-title">
+          <h2 className="section-title" id="services-title">
             What we do <span className="accent-text">best.</span>
           </h2>
           <p className="section-subtitle">

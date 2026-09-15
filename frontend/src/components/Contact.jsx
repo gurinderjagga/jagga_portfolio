@@ -7,7 +7,7 @@ export default function Contact() {
   const [state, handleSubmit] = useForm("mnpaplwg");
 
   return (
-    <AnimatedSection id="contact" className="section-dark">
+    <AnimatedSection id="contact" className="section-dark" ariaLabel="Contact us">
       <div className="contact__layout">
         <AnimatedItem className="contact__info">
 
@@ -77,6 +77,7 @@ export default function Contact() {
               viewport={{ once: true }}
               transition={{ type: 'spring', stiffness: 80, damping: 18, delay: 0.3 }}
             >
+              <label className="sr-only" htmlFor="contact-name">Full name</label>
               <input
                 type="text"
                 id="contact-name"
@@ -84,6 +85,7 @@ export default function Contact() {
                 placeholder="Full Name*"
                 required
                 maxLength={60}
+                autoComplete="name"
                 className="contact__input"
               />
               <ValidationError prefix="Name" field="name" errors={state.errors} />
@@ -95,6 +97,7 @@ export default function Contact() {
               viewport={{ once: true }}
               transition={{ type: 'spring', stiffness: 80, damping: 18, delay: 0.4 }}
             >
+              <label className="sr-only" htmlFor="contact-email">Email address</label>
               <input
                 type="email"
                 id="contact-email"
@@ -102,6 +105,7 @@ export default function Contact() {
                 placeholder="Email Address*"
                 required
                 maxLength={100}
+                autoComplete="email"
                 className="contact__input"
               />
               <ValidationError prefix="Email" field="email" errors={state.errors} />
@@ -115,6 +119,7 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ type: 'spring', stiffness: 80, damping: 18, delay: 0.5 }}
           >
+            <label className="sr-only" htmlFor="contact-message">How can we help you?</label>
             <textarea
               id="contact-message"
               name="message"

@@ -59,11 +59,11 @@ const ValueIcon = ({ type }) => {
 
 export default function About() {
   return (
-    <AnimatedSection id="about" className="section-dark">
+    <AnimatedSection id="about" className="section-dark" labelledBy="about-title">
       <div className="about__layout">
         <AnimatedItem className="about__story">
           <span className="section-label">Who We Are</span>
-          <h2 className="section-title">
+          <h2 className="section-title" id="about-title">
             Small team, <span className="accent-text">real impact.</span>
           </h2>
           <p className="about__description">
@@ -98,7 +98,7 @@ export default function About() {
                   <ValueIcon type={value.icon} />
                 </div>
                 <div>
-                  <h4 className="about__value-title">{value.title}</h4>
+                  <h3 className="about__value-title">{value.title}</h3>
                   <p className="about__value-desc">{value.desc}</p>
                 </div>
               </motion.div>

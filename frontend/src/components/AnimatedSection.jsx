@@ -33,11 +33,19 @@ const childVariants = {
  * AnimatedSection — replaces SectionWrapper with motion-powered viewport reveals.
  * Children wrapped in <AnimatedItem> will stagger in automatically.
  */
-export default function AnimatedSection({ children, id, className = '' }) {
+export default function AnimatedSection({
+  children,
+  id,
+  className = '',
+  labelledBy,
+  ariaLabel,
+}) {
   return (
     <motion.section
       id={id}
       className={`section-padding ${className}`}
+      aria-labelledby={labelledBy}
+      aria-label={labelledBy ? undefined : ariaLabel}
       variants={sectionVariants}
       initial="hidden"
       whileInView="visible"

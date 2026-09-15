@@ -682,6 +682,18 @@
   font-weight: 500;
   letter-spacing: 0.03em;
   transition: color var(--transition-fast);
+  /* Real <button> carrying keyboard access for the whole card — reset the
+     UA chrome so it keeps reading as the inline hint it looks like. */
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.work__card-hint:hover,
+.work__card-hint:focus-visible {
+  color: var(--color-accent);
 }
 
 .work__card--clickable:hover .work__card-hint {

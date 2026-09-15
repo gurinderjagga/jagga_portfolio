@@ -25,9 +25,9 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ type: 'spring', stiffness: 80, damping: 18 }}
           >
-            <h2 style={{ fontSize: '2rem', fontWeight: 400, marginBottom: '0.5rem', color: 'var(--color-text)' }}>
+            <p style={{ fontSize: '2rem', fontWeight: 400, marginBottom: '0.5rem', color: 'var(--color-text)' }}>
               Jagga Digital
-            </h2>
+            </p>
             <p className="footer__tagline">
               Crafting digital experiences that convert. Strategy. Design. Code.
             </p>
@@ -43,7 +43,7 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ type: 'spring', stiffness: 80, damping: 18, delay: 0.3 }}
           >
-            <h4 className="footer__heading">Connect</h4>
+            <h2 className="footer__heading">Connect</h2>
             <div className="footer__socials">
               {[
                 {
@@ -88,6 +88,7 @@ export default function Footer() {
             &copy; {currentYear} Jagga Digital. All rights reserved.
           </p>
           <motion.button
+            type="button"
             className="footer__back-to-top"
             onClick={scrollToTop}
             aria-label="Back to top"
