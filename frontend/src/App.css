@@ -256,7 +256,7 @@
 
 .hero__card {
   position: relative;
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-lg);
   overflow: hidden;
   min-height: 52vh;
   display: flex;
@@ -334,7 +334,9 @@
   padding: var(--space-6) var(--space-10);
   background: var(--color-bg-card);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-full);
+  /* Was radius-full. A pill is a control shape; stretched across 1150px
+     it read as a tag rather than a data summary. */
+  border-radius: var(--radius-lg);
   max-width: max-content;
   margin: 0 auto;
 }
@@ -872,14 +874,18 @@
   margin-top: var(--space-10);
 }
 
+/* A row, not a card. These are three short statements; boxing each one
+   gave them the same weight as the work cards and flattened the page. */
 .about__value {
   display: flex;
   align-items: flex-start;
-  gap: var(--space-4);
-  padding: var(--space-6);
-  background: var(--color-bg-card);
-  border-radius: var(--radius-md);
-  border: 1px solid var(--color-border);
+  gap: var(--space-5);
+  padding: var(--space-5) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.about__value:last-child {
+  border-bottom: 1px solid var(--color-border);
 }
 
 .about__value-icon {
@@ -926,9 +932,20 @@
   gap: var(--space-6);
 }
 
+/* Card chrome removed — the grid already groups these. Kept centred so
+   the avatars still form a row. */
 .about__member {
-  padding: var(--space-8);
+  padding: var(--space-6) var(--space-4);
   text-align: center;
+  transition: color var(--transition-base);
+}
+
+.about__member-name {
+  transition: color var(--transition-fast);
+}
+
+a.about__member:hover .about__member-name {
+  color: var(--color-accent);
 }
 
 .about__member-avatar {
@@ -979,7 +996,7 @@
   }
 
   .about__value {
-    padding: var(--space-4);
+    padding: var(--space-4) 0;
   }
 }
 
@@ -1190,15 +1207,17 @@
   margin-top: auto;
 }
 
+/* Rows with hairlines. Three contact facts do not each need a container. */
 .contact__detail-item {
   display: flex;
   align-items: center;
   gap: var(--space-4);
-  padding: var(--space-4) var(--space-5);
-  background: var(--color-bg-card);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  backdrop-filter: blur(10px);
+  padding: var(--space-4) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.contact__detail-item:last-child {
+  border-bottom: 1px solid var(--color-border);
 }
 
 .contact__detail-icon {
@@ -1246,7 +1265,7 @@
 .contact__input {
   width: 100%;
   padding: 0.95rem var(--space-5);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   background: var(--color-input-bg);
   border: 1px solid var(--color-border);
   color: var(--color-text);
@@ -1499,12 +1518,6 @@
   .services__card-icon-wrapper {
     background: #F3F4F6;
     border-color: rgba(0, 0, 0, 0.08);
-  }
-
-  .about__value {
-    background: #FFFFFF;
-    border-color: rgba(0, 0, 0, 0.08);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
   }
 
   .footer__back-to-top:hover {

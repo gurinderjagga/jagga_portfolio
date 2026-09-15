@@ -264,13 +264,16 @@ ul, ol {
 }
 
 .section-padding {
-  padding: var(--space-16) 0;
+  padding: var(--space-24) 0;
 }
 
-.section-padding:not(#home) {
-  content-visibility: auto;
-  contain-intrinsic-size: 1px 700px;
-}
+/* NOTE: `content-visibility: auto` with `contain-intrinsic-size: 1px 700px`
+   used to live here. It skips layout for off-screen sections and stands in
+   a 700px placeholder, so every un-rendered section reported 828px
+   (700 + 2x64 padding) and a smooth scroll to a distant anchor was computed
+   against a document hundreds of pixels shorter than the real one — the
+   scroll landed short and the page grew underneath it. The rendering win is
+   not worth a broken anchor on a five-section page. */
 
 .section-dark,
 .section-light {
