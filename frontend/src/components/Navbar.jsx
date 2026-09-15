@@ -114,9 +114,19 @@ export default function Navbar() {
           whileTap={{ scale: 0.98 }}
         >
           <a href="#home" className="navbar__logo" onClick={(e) => scrollToSection(e, 'home')}>
+            {/* Renders at 64px; 192 covers 3x displays. WebP first, PNG
+                fallback, light-scheme variant ahead of each. */}
             <picture>
-              <source srcSet="/logo1.png" media="(prefers-color-scheme: light)" />
-              <img src="/logo.png" alt="JD Logo" className="navbar__logo-img" />
+              <source srcSet="/logo1-192.webp" type="image/webp" media="(prefers-color-scheme: light)" />
+              <source srcSet="/logo1-192.png" media="(prefers-color-scheme: light)" />
+              <source srcSet="/logo-192.webp" type="image/webp" />
+              <img
+                src="/logo-192.png"
+                alt="Jagga Digital"
+                className="navbar__logo-img"
+                width="192"
+                height="192"
+              />
             </picture>
           </a>
         </motion.div>

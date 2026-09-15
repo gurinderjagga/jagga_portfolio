@@ -87,12 +87,15 @@ export default function Services() {
             }}
           >
             <motion.div className="services__card-icon-wrapper">
+              {/* whileInView rather than animate: an infinite loop on `animate`
+                  keeps compositing even when the section is far off screen. */}
               <motion.div
                 className="services__card-icon"
-                animate={{
+                whileInView={{
                   y: [0, -4, 0],
                   rotate: [0, -5, 5, 0]
                 }}
+                viewport={{ once: false, amount: 0.2 }}
                 transition={{
                   duration: 4,
                   repeat: Infinity,

@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'motion/react';
 
 const orbs = [
@@ -97,12 +97,10 @@ export default function AmbientBackground() {
     };
   }, [hasMouse, mouseX, mouseY]);
 
-  /* On mobile: show only the 2 most impactful orbs (coral + blue) and scale them down.
-     On desktop: show all 5 for the full ambient experience. */
-  const visibleOrbs = useMemo(
-    () => (isMobile ? orbs.slice(0, 2) : orbs),
-    [isMobile]
-  );
+  /* Both orbs render at every breakpoint; FloatingOrb scales them down on
+     mobile. (This used to slice(0, 2) a 2-item array — a no-op left over
+     from a 5-orb version.) */
+  const visibleOrbs = orbs;
 
   return (
     <div

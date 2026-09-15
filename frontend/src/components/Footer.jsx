@@ -99,9 +99,10 @@ export default function Footer() {
               transition: { type: 'spring', stiffness: 300, damping: 20 },
             }}
             whileTap={{ scale: 0.92 }}
-            animate={{
+            whileInView={{
               y: [0, -4, 0],
             }}
+            viewport={{ once: false, amount: 0.5 }}
             transition={{
               duration: 2.5,
               repeat: Infinity,

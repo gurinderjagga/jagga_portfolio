@@ -3,16 +3,33 @@ import { motion, AnimatePresence } from 'motion/react';
 import AnimatedSection, { AnimatedItem } from './AnimatedSection';
 import AnimatedCard from './AnimatedCard';
 import ProjectModal from './ProjectModal';
-import trainerWebsite from '../assets/images/ss3-opt.jpg';
-import yuvrajPortfolio from '../assets/images/ss-opt.jpg';
-import phoenixProject from '../assets/images/ss2-opt.jpg';
+/* Responsive variants sit beside the sources as <stem>-<width>.<ext>.
+   The glob is scoped to that "-<digits>" suffix so the oversized originals
+   are never pulled into the bundle. */
+const assets = import.meta.glob('../assets/images/*-[0-9]*.{avif,webp,jpg}', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+});
+
+const assetUrl = (name) => assets[`../assets/images/${name}`];
+
+const srcSet = (stem, ext, widths) =>
+  widths.map((w) => `${assetUrl(`${stem}-${w}.${ext}`)} ${w}w`).join(', ');
 
 const projects = [
   {
     id: 1,
     title: 'Phoenix — Car Commerce Platform',
     category: 'Full Stack Development',
-    image: phoenixProject,
+    image: {
+      stem: 'ss2-opt',
+      widths: [480, 720, 960, 1091],
+      fallback: 1091,
+      width: 1091,
+      height: 951,
+      sizes: '(min-width: 1367px) 758px, (min-width: 1248px) 1152px, calc(100vw - 48px)',
+    },
     result: 'Live Project',
     description: 'A full-stack car commerce web application. Browse, list, and purchase vehicles with a seamless, modern buying experience.',
     approach: 'Built end-to-end with a robust backend, real-time listings, and a clean responsive frontend optimized for conversion.',
@@ -22,7 +39,14 @@ const projects = [
     id: 2,
     title: 'Personal Trainer Website',
     category: 'Web Development',
-    image: trainerWebsite,
+    image: {
+      stem: 'ss3-opt',
+      widths: [480, 720, 960, 1440],
+      fallback: 1440,
+      width: 1440,
+      height: 719,
+      sizes: '(min-width: 1367px) 366px, (min-width: 1248px) 1152px, calc(100vw - 48px)',
+    },
     result: 'Live Project',
     description: 'A modern, high-conversion website for a personal trainer. Showcases services, testimonials, and contact options clearly.',
     approach: 'Designed with a focus on conversion optimization, fast loading times, and a responsive layout for mobile users.',
@@ -32,7 +56,14 @@ const projects = [
     id: 3,
     title: 'Yuvraj Rawat — Video Editor Portfolio',
     category: 'Full Stack Development',
-    image: yuvrajPortfolio,
+    image: {
+      stem: 'ss-opt',
+      widths: [480, 720, 960, 1440],
+      fallback: 1440,
+      width: 1440,
+      height: 707,
+      sizes: '(min-width: 1367px) 575px, (min-width: 1248px) 1152px, calc(100vw - 48px)',
+    },
     result: 'Live Project',
     description: 'A cinematic, high-performance video editor portfolio site built with modern web technologies. Showcases reel work with smooth transitions and immersive design.',
     approach: 'Designed from scratch with a film-noir aesthetic, motion-first interactions, and mobile-first responsive layout.',
@@ -89,7 +120,26 @@ export default function Work() {
                     onMouseEnter={() => setHoveredProject(project.id)}
                     onMouseLeave={() => setHoveredProject(null)}
                   >
-                    <img src={project.image} alt={project.title} loading="lazy" decoding="async" />
+                    <picture>
+                      <source
+                        type="image/avif"
+                        srcSet={srcSet(project.image.stem, 'avif', project.image.widths)}
+                        sizes={project.image.sizes}
+                      />
+                      <source
+                        type="image/webp"
+                        srcSet={srcSet(project.image.stem, 'webp', project.image.widths)}
+                        sizes={project.image.sizes}
+                      />
+                      <img
+                        src={assetUrl(`${project.image.stem}-${project.image.fallback}.jpg`)}
+                        alt={project.title}
+                        width={project.image.width}
+                        height={project.image.height}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </picture>
                     <motion.div
                       className="work__card-overlay"
                       initial={false}
