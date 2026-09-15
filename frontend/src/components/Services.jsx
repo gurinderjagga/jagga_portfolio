@@ -142,7 +142,7 @@ export default function Services() {
                 <path d="M5 12h14" />
                 <path d="M12 5l7 7-7 7" />
               </svg>
-              Read more
+              Discuss this project
             </a>
 
           </motion.div>

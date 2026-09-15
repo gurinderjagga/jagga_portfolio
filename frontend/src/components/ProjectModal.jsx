@@ -94,6 +94,22 @@ export default function ProjectModal({ project, onClose }) {
                 <h3 className="project-modal__title">{project.title}</h3>
               </div>
               <div className="project-modal__actions">
+                {/* The frame is the only route to the work. If a client ever
+                    sets X-Frame-Options it renders blank, and without this
+                    there is no way through to the real site. */}
+                <a
+                  className="project-modal__open"
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span>Open in new tab</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                    <path d="M15 3h6v6" />
+                    <path d="M10 14L21 3" />
+                  </svg>
+                </a>
                 <button
                   type="button"
                   className="project-modal__close"
@@ -107,6 +123,14 @@ export default function ProjectModal({ project, onClose }) {
                 </button>
               </div>
             </div>
+
+            {/* Moved here from the card's hover overlay, which no pointer-less
+                visitor could ever reach. */}
+            {project.approach && (
+              <p className="project-modal__approach">
+                <strong>The Approach</strong> {project.approach}
+              </p>
+            )}
 
             {/* iFrame */}
             <div className="project-modal__frame-wrap">

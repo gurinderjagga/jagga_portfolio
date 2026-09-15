@@ -72,7 +72,6 @@ const projects = [
 ];
 
 export default function Work() {
-  const [hoveredProject, setHoveredProject] = useState(null);
   const [activeModal, setActiveModal] = useState(null);
 
   return (
@@ -115,11 +114,7 @@ export default function Work() {
                   /* Keyboard access lives on the Preview button below. */
                   tabIndex={-1}
                 >
-                  <div
-                    className="work__card-image"
-                    onMouseEnter={() => setHoveredProject(project.id)}
-                    onMouseLeave={() => setHoveredProject(null)}
-                  >
+                  <div className="work__card-image">
                     <picture>
                       <source
                         type="image/avif"
@@ -140,16 +135,6 @@ export default function Work() {
                         decoding="async"
                       />
                     </picture>
-                    <motion.div
-                      className="work__card-overlay"
-                      initial={false}
-                      animate={{ opacity: hoveredProject === project.id ? 1 : 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <p className="work__card-approach">
-                        <strong>The Approach:</strong> {project.approach}
-                      </p>
-                    </motion.div>
                   </div>
                   <div className="work__card-content">
                     <h3 className="work__card-title">{project.title}</h3>
