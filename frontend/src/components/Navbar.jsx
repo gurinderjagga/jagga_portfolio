@@ -8,6 +8,9 @@ const navLinks = [
   { id: 'about', label: 'About us' },
 ];
 
+/* Contact has no nav link but still drives the active state. */
+const SECTION_IDS = [...navLinks.map((l) => l.id), 'contact'];
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -28,39 +31,42 @@ export default function Navbar() {
     return () => query.removeEventListener('change', sync);
   }, []);
 
+  /* Navbar background. Reads only scrollY, so it never forces layout. */
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-
-      const sections = navLinks.map(link => document.getElementById(link.id)).filter(Boolean);
-      const contactSection = document.getElementById('contact');
-      if (contactSection) sections.push(contactSection);
-
-      const scrollPosition = window.scrollY + 150; // offset for navbar
-
-      let currentActiveId = activeId;
-      for (const section of sections) {
-        if (section.offsetTop <= scrollPosition && (section.offsetTop + section.offsetHeight) > scrollPosition) {
-          currentActiveId = section.id;
-        }
-      }
-      
-      // If at bottom, contact might be active
-      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
-        currentActiveId = 'contact';
-      }
-
-      if (currentActiveId && (navLinks.some(link => link.id === currentActiveId) || currentActiveId === 'contact')) {
-         setActiveId(currentActiveId);
-      }
-    };
-    
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll, { passive: true });
-    // Initial call
     handleScroll();
-    
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [activeId]);
+  }, []);
+
+  /* Active section. This used to run on every scroll event, reading
+     offsetTop/offsetHeight for all five sections — a forced reflow per
+     event — and re-bound the listener on every change because activeId
+     was a dependency. An observer does the same job off the main thread. */
+  useEffect(() => {
+    const elements = SECTION_IDS
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+    if (elements.length === 0) return;
+
+    /* A band just below the navbar: a section becomes current when its
+       body crosses it. The sections are far taller than the band, so at
+       most one qualifies at a time. */
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const inBand = entries.filter((e) => e.isIntersecting);
+        if (inBand.length === 0) return;
+        const topmost = inBand.reduce((a, b) =>
+          a.boundingClientRect.top <= b.boundingClientRect.top ? a : b
+        );
+        setActiveId(topmost.target.id);
+      },
+      { rootMargin: '-15% 0px -80% 0px', threshold: 0 }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const activeIndex = navLinks.findIndex(link => link.id === activeId);

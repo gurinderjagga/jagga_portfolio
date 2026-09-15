@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import AnimatedSection, { AnimatedItem } from './AnimatedSection';
 import AnimatedCard from './AnimatedCard';
 import ProjectModal from './ProjectModal';
@@ -93,14 +93,14 @@ export default function Work() {
 
         {/* Project cards grid */}
         <div className="work__grid">
-          <AnimatePresence mode="popLayout">
-            {projects.map((project, index) => (
+          {/* No AnimatePresence or layout prop here: the list is static, so
+              nothing ever enters or exits. Both were left over from a
+              removed filter UI and cost layout measurement per render. */}
+          {projects.map((project, index) => (
               <motion.div
                 key={project.id}
-                layout
                 initial={{ opacity: 0, scale: 0.9, filter: 'blur(6px)' }}
                 animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-                exit={{ opacity: 0, scale: 0.9, filter: 'blur(6px)' }}
                 transition={{
                   type: 'spring',
                   stiffness: 200,
@@ -178,8 +178,7 @@ export default function Work() {
                   </div>
                 </AnimatedCard>
               </motion.div>
-            ))}
-          </AnimatePresence>
+          ))}
         </div>
       </AnimatedSection>
 
