@@ -7,9 +7,13 @@ export default function Contact() {
   const [state, handleSubmit] = useForm("mnpaplwg");
 
   return (
-    <AnimatedSection id="contact" className="section-dark" ariaLabel="Contact us">
+    <AnimatedSection id="contact" className="section-dark" labelledBy="contact-title">
       <div className="contact__layout">
         <AnimatedItem className="contact__info">
+          <span className="section-label">Get in Touch</span>
+          <h2 className="contact__heading" id="contact-title">
+            Tell us what you're <span className="accent-text">building.</span>
+          </h2>
 
           <p className="contact__description">
             Have a project in mind, need technical advice, or just want to discuss ideas? 

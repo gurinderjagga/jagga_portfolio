@@ -90,6 +90,11 @@
   border-radius: var(--radius-full);
 }
 
+/* Only ever shown inside the mobile drawer — see the ≤768px block below. */
+.navbar__drawer-cta {
+  display: none;
+}
+
 .navbar__right {
   display: flex;
   align-items: center;
@@ -221,6 +226,24 @@
     width: 100%;
     border-bottom: 1px solid var(--color-border);
     padding-bottom: var(--space-4);
+  }
+
+  /* The sliding underline is positioned from offsetLeft/offsetWidth, which
+     assumes a horizontal row. In the vertical drawer it renders as a stray
+     bar, so drop it and mark the active link by colour instead. */
+  .navbar__link-indicator {
+    display: none;
+  }
+
+  .navbar__link--active {
+    color: var(--color-accent);
+  }
+
+  .navbar__drawer-cta {
+    display: inline-flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: var(--space-2);
   }
 }
 
@@ -405,7 +428,9 @@
 
 @media (max-width: 768px) {
   .hero {
-    min-height: 100svh;
+    /* Content-sized rather than 100svh, so the stats row lands inside the
+       first screen instead of below a third of a phone of empty space. */
+    min-height: auto;
     padding: calc(var(--nav-height) + var(--space-8)) 0 var(--space-8);
     align-items: stretch;
   }
@@ -447,7 +472,7 @@
     gap: var(--space-2);
     padding: var(--space-4);
     width: 100%;
-    margin-top: auto; /* Anchors the stats to the bottom of the hero content */
+    margin-top: var(--space-6);
   }
 
   .hero__stat {
@@ -483,7 +508,7 @@
 
 @media (max-width: 480px) {
   .hero__card {
-    min-height: 45vh;
+    min-height: auto;
     padding: var(--space-5);
     border-radius: var(--radius-lg);
   }

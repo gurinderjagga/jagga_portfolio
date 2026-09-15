@@ -147,6 +147,16 @@ export default function Navbar() {
             animate={indicatorStyle}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
           />
+
+          {/* The desktop CTA lives in .navbar__right, which is hidden below
+              768px. Without this the drawer offers no route to the form. */}
+          <a
+            href="#contact"
+            className="btn btn-primary navbar__drawer-cta"
+            onClick={(e) => scrollToSection(e, 'contact')}
+          >
+            Get in Touch
+          </a>
         </div>
 
         <div className="navbar__right">
