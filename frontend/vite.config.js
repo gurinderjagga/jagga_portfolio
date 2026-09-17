@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     /* Inline only very small assets (under 4KB) to reduce HTTP requests
-       without bloating the JS bundle — but never images. A responsive
+       without bloating the JS bundle, but never images. A responsive
        variant inlined as a base64 data URI ships to every visitor inside
        the JS, defeating the point of letting <picture> choose one file. */
     assetsInlineLimit(filePath) {

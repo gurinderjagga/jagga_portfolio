@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 
 /* Deliberately excludes the preview iframe. Focus that enters a cross-origin
-   frame is gone — our Escape listener never sees the keypress and the dialog
+   frame is gone. Our Escape listener never sees the keypress and the dialog
    becomes a real keyboard trap. The frame is a preview, not part of the
    page's keyboard flow. */
 const FOCUSABLE =

@@ -1,5 +1,5 @@
 /* ============================================
-   JAGGA DIGITAL — DESIGN SYSTEM
+   JAGGA DIGITAL / DESIGN SYSTEM
    Automatic Light & Dark System Theme
    ============================================ */
 
@@ -14,7 +14,7 @@
   --color-text-secondary: #CBD5E1;
   --color-text-muted: #94A3B8;
   
-  /* Brand Accent — Subtle Light Gray / Titanium */
+  /* Brand Accent: Subtle Light Gray / Titanium */
   --color-accent: #E2E8F0;
   --color-accent-hover: #FFFFFF;
   --color-accent-light: rgba(226, 232, 240, 0.14);
@@ -215,7 +215,7 @@ a {
   padding: var(--space-3) var(--space-5);
   background: var(--color-accent);
   color: var(--color-btn-text);
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-sm);
   font-size: var(--text-sm);
   font-weight: 600;
   box-shadow: var(--shadow-lg);
@@ -271,7 +271,7 @@ ul, ol {
    used to live here. It skips layout for off-screen sections and stands in
    a 700px placeholder, so every un-rendered section reported 828px
    (700 + 2x64 padding) and a smooth scroll to a distant anchor was computed
-   against a document hundreds of pixels shorter than the real one — the
+   against a document hundreds of pixels shorter than the real one, so the
    scroll landed short and the page grew underneath it. The rendering win is
    not worth a broken anchor on a five-section page. */
 
@@ -308,7 +308,7 @@ ul, ol {
   justify-content: center;
   gap: var(--space-2);
   padding: 0.75rem 1.75rem;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-sm);
   font-weight: 600;
   font-size: var(--text-sm);
   letter-spacing: 0.01em;
@@ -371,7 +371,7 @@ ul, ol {
   margin-bottom: var(--space-3);
   padding: 4px 12px;
   background: var(--color-accent-light);
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-sm);
 }
 
 .section-title {

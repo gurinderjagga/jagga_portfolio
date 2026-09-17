@@ -40,8 +40,8 @@ export default function Navbar() {
   }, []);
 
   /* Active section. This used to run on every scroll event, reading
-     offsetTop/offsetHeight for all five sections — a forced reflow per
-     event — and re-bound the listener on every change because activeId
+     offsetTop/offsetHeight for all five sections (a forced reflow per
+     event), and re-bound the listener on every change because activeId
      was a dependency. An observer does the same job off the main thread. */
   useEffect(() => {
     const elements = SECTION_IDS

@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react';
 
 /**
- * MagneticButton — a CTA that subtly pulls toward the cursor on hover.
+ * MagneticButton: a CTA that subtly pulls toward the cursor on hover.
  * Animation runs entirely outside the React render cycle via useMotionValue.
  */
 export default function MagneticButton({

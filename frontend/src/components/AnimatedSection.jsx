@@ -30,7 +30,7 @@ const childVariants = {
 };
 
 /**
- * AnimatedSection — replaces SectionWrapper with motion-powered viewport reveals.
+ * AnimatedSection: replaces SectionWrapper with motion-powered viewport reveals.
  * Children wrapped in <AnimatedItem> will stagger in automatically.
  */
 export default function AnimatedSection({
@@ -59,7 +59,7 @@ export default function AnimatedSection({
 }
 
 /**
- * AnimatedItem — a child wrapper that participates in the parent's stagger.
+ * AnimatedItem: a child wrapper that participates in the parent's stagger.
  * Use inside AnimatedSection for automatic orchestration.
  */
 export function AnimatedItem({ children, className = '', as = 'div' }) {

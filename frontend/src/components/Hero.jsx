@@ -1,31 +1,6 @@
-import { useRef, useEffect, useState } from 'react';
-import { motion, useScroll, useTransform, animate } from 'motion/react';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import MagneticButton from './MagneticButton';
-
-/* Animated counter that counts up from 0 to the target value */
-function CountUp({ target, suffix = '' }) {
-  const nodeRef = useRef(null);
-
-  useEffect(() => {
-    const node = nodeRef.current;
-    if (!node) return;
-
-    const numericTarget = parseFloat(target);
-    const controls = animate(0, numericTarget, {
-      duration: 2,
-      ease: [0.32, 0.72, 0, 1],
-      onUpdate(value) {
-        node.textContent = (Number.isInteger(numericTarget)
-          ? Math.round(value)
-          : value.toFixed(0)) + suffix;
-      },
-    });
-
-    return () => controls.stop();
-  }, [target, suffix]);
-
-  return <span ref={nodeRef}>0{suffix}</span>;
-}
 
 const heroTitleLine1 = "Your Vision. Our Code.";
 const heroTitleLine2 = "Measurable Results.";
@@ -38,8 +13,6 @@ export default function Hero() {
   });
 
   const particle1Y = useTransform(scrollYProgress, [0, 1], [0, -60]);
-
-  const [statsVisible, setStatsVisible] = useState(false);
 
   const handleNavigate = (path) => {
     const id = path.substring(1); // remove '/'
@@ -121,36 +94,6 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* Stats row */}
-        <motion.div
-          className="hero__stats"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ type: 'spring', stiffness: 60, damping: 18, delay: 0.7 }}
-          onViewportEnter={() => setStatsVisible(true)}
-          viewport={{ once: true }}
-        >
-          <div className="hero__stat">
-            <span className="hero__stat-number">
-              {statsVisible ? <CountUp target={30} suffix="+" /> : '0+'}
-            </span>
-            <span className="hero__stat-label">Projects Launched</span>
-          </div>
-          <div className="hero__stat-divider" />
-          <div className="hero__stat">
-            <span className="hero__stat-number">
-              {statsVisible ? <CountUp target={98} suffix="%" /> : '0%'}
-            </span>
-            <span className="hero__stat-label">Client Satisfaction</span>
-          </div>
-          <div className="hero__stat-divider" />
-          <div className="hero__stat">
-            <span className="hero__stat-number">
-              {statsVisible ? <CountUp target={100} suffix="%" /> : '0%'}
-            </span>
-            <span className="hero__stat-label">On-Time Delivery</span>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

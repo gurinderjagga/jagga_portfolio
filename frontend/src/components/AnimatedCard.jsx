@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react';
 
 /**
- * AnimatedCard — interactive card with 3D perspective tilt on hover.
+ * AnimatedCard: interactive card with 3D perspective tilt on hover.
  * Uses useMotionValue outside the React render cycle for smooth 60fps animation.
  */
 export default function AnimatedCard({

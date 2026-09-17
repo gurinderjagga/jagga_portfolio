@@ -12,7 +12,7 @@ import './App.css';
 export default function App() {
   return (
     /* reducedMotion="user" makes every motion component honour the OS
-       "reduce motion" setting — the CSS media query alone cannot reach them. */
+       "reduce motion" setting. The CSS media query alone cannot reach them. */
     <MotionConfig reducedMotion="user">
       <a className="skip-link" href="#main">Skip to content</a>
       <AmbientBackground />

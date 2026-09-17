@@ -20,7 +20,7 @@ const srcSet = (stem, ext, widths) =>
 const projects = [
   {
     id: 1,
-    title: 'Phoenix — Car Commerce Platform',
+    title: 'Phoenix: Car Commerce Platform',
     category: 'Full Stack Development',
     image: {
       stem: 'ss2-opt',
@@ -54,7 +54,7 @@ const projects = [
   },
   {
     id: 3,
-    title: 'Yuvraj Rawat — Video Editor Portfolio',
+    title: 'Yuvraj Rawat: Video Editor Portfolio',
     category: 'Full Stack Development',
     image: {
       stem: 'ss-opt',

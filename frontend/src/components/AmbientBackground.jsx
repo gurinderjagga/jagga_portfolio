@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { motion, useMotionValue, useSpring } from 'motion/react';
+import { motion } from 'motion/react';
 
 const orbs = [
   {
@@ -60,45 +60,18 @@ function FloatingOrb({ orb, isMobile }) {
 }
 
 export default function AmbientBackground() {
-  const [hasMouse, setHasMouse] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const mouseX = useMotionValue(-500);
-  const mouseY = useMotionValue(-500);
-
-  // Ultra-smooth spring cursor follower
-  const springConfig = { damping: 28, stiffness: 90, mass: 0.5 };
-  const smoothX = useSpring(mouseX, springConfig);
-  const smoothY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
     // Detect mobile/tablet on mount and on resize
     const checkMobile = () => setIsMobile(window.innerWidth <= 768);
     checkMobile();
     window.addEventListener('resize', checkMobile, { passive: true });
-
-    const handleMouseMove = (e) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
-      if (!hasMouse) setHasMouse(true);
-    };
-
-    const handleMouseLeave = () => {
-      mouseX.set(-500);
-      mouseY.set(-500);
-    };
-
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    document.addEventListener('mouseleave', handleMouseLeave);
-
-    return () => {
-      window.removeEventListener('resize', checkMobile);
-      window.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseleave', handleMouseLeave);
-    };
-  }, [hasMouse, mouseX, mouseY]);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   /* Both orbs render at every breakpoint; FloatingOrb scales them down on
-     mobile. (This used to slice(0, 2) a 2-item array — a no-op left over
+     mobile. (This used to slice(0, 2) a 2-item array, a no-op left over
      from a 5-orb version.) */
   const visibleOrbs = orbs;
 
@@ -118,27 +91,6 @@ export default function AmbientBackground() {
         <FloatingOrb key={orb.id} orb={orb} isMobile={isMobile} />
       ))}
 
-      {/* Interactive Cursor Spotlight Glow — desktop only */}
-      {hasMouse && !isMobile && (
-        <motion.div
-          style={{
-            position: 'fixed',
-            left: 0,
-            top: 0,
-            width: 600,
-            height: 600,
-            x: smoothX,
-            y: smoothY,
-            translateX: '-50%',
-            translateY: '-50%',
-            borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(226, 232, 240, 0.05) 0%, rgba(226, 232, 240, 0.01) 40%, transparent 70%)',
-            pointerEvents: 'none',
-            zIndex: 0,
-            filter: 'blur(20px)',
-          }}
-        />
-      )}
 
       {/* Subtle Noise / Grid Texture layer for depth */}
       <div
