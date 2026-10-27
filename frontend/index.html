@@ -4,6 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Resolve the theme before first paint so there is no flash. A saved
+         choice wins; the default is light. -->
+    <script>
+      (function () {
+        var t;
+        try { t = localStorage.getItem('jagga-theme'); } catch (e) {}
+        if (t !== 'light' && t !== 'dark') {
+          t = 'light';
+        }
+        document.documentElement.setAttribute('data-theme', t);
+      })();
+    </script>
+
     <title>Jagga Digital | Premium Digital Experiences</title>
     <meta name="description" content="Jagga Digital. We craft stunning digital experiences that convert. Web design, product strategy, custom development, and interface design." />
     <link rel="canonical" href="https://jaggadigital.vercel.app/" />
@@ -22,8 +35,13 @@
     </script>
 
     <!-- Browser chrome, matching the two themes in index.css -->
-    <meta name="theme-color" content="#F8FAFC" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0A0F1D" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#E8ECE4" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#131A15" media="(prefers-color-scheme: dark)" />
+
+    <!-- Archivo: display face for headings only. Body stays on the system stack. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&display=swap" rel="stylesheet" />
 
     <!-- Open Graph: what LinkedIn, Slack, WhatsApp and iMessage render -->
     <meta property="og:type" content="website" />

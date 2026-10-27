@@ -79,7 +79,7 @@ export default function Work() {
       <AnimatedSection id="work" labelledBy="work-title">
         <AnimatedItem>
           <div className="section-header">
-            <span className="section-label">Featured Work</span>
+            <span className="section-label">Featured work</span>
             <h2 className="section-title" id="work-title">
               Built with <span className="accent-text">purpose & speed.</span>
             </h2>
@@ -108,6 +108,7 @@ export default function Work() {
                 }}
               >
                 <AnimatedCard
+                  enableTilt={false}
                   className={`work__card card-dark${project.url ? ' work__card--clickable' : ''}`}
                   id={`project-card-${project.id}`}
                   onClick={() => project.url && setActiveModal(project)}
@@ -115,6 +116,7 @@ export default function Work() {
                   tabIndex={-1}
                 >
                   <div className="work__card-image">
+                    <span className="work__card-tag">{project.category}</span>
                     <picture>
                       <source
                         type="image/avif"
@@ -140,7 +142,10 @@ export default function Work() {
                     <h3 className="work__card-title">{project.title}</h3>
                     <p className="work__card-description">{project.description}</p>
                     <div className="work__card-footer">
-                      <span className="work__card-result">{project.result}</span>
+                      <span className="work__card-result">
+                        <span className="work__card-dot" aria-hidden="true" />
+                        {project.result}
+                      </span>
                       {project.url && (
                         <button
                           type="button"

@@ -3,46 +3,50 @@
    Automatic Light & Dark System Theme
    ============================================ */
 
-/* --- Default Theme (Dark) --- */
+/* --- Sage mist: light-first. Pale sage paper, deep green ink, one muted
+   green accent. The dark theme is the same hue family, deepened. --- */
 :root {
-  --color-bg: #0A0F1D;
-  --color-bg-elevated: #111A2E;
-  --color-bg-card: rgba(255, 255, 255, 0.035);
-  --color-bg-card-hover: rgba(255, 255, 255, 0.08);
-  
-  --color-text: #FFFFFF;
-  --color-text-secondary: #CBD5E1;
-  --color-text-muted: #94A3B8;
-  
-  /* Brand Accent: Subtle Light Gray / Titanium */
-  --color-accent: #E2E8F0;
-  --color-accent-hover: #FFFFFF;
-  --color-accent-light: rgba(226, 232, 240, 0.14);
-  --color-accent-glow: rgba(226, 232, 240, 0.25);
-  --color-btn-text: #0A0F1D;
-  
-  /* Status Colors */
-  --color-available: #E2E8F0;
-  --color-available-bg: rgba(226, 232, 240, 0.12);
+  color-scheme: light;
+  --color-bg: #E8ECE4;
+  --color-bg-elevated: #F1F4EE;
+  --color-bg-card: #F1F4EE;
+  --color-bg-card-hover: #F7F9F4;
 
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-border-hover: rgba(226, 232, 240, 0.25);
-  --color-dot-grid: rgba(255, 255, 255, 0.04);
+  --color-text: #1F2A22;
+  --color-text-secondary: #46544A;
+  --color-text-muted: #5E6B62;
 
-  --color-nav-bg: rgba(10, 15, 29, 0.88);
-  --color-input-bg: rgba(255, 255, 255, 0.03);
-  --color-modal-bg: #111A2E;
-  --color-modal-header-bg: rgba(255, 255, 255, 0.04);
-  --color-modal-overlay: rgba(10, 15, 29, 0.85);
-  --color-shadow: 0 16px 50px rgba(0, 0, 0, 0.6);
-  
-  --color-success: #10B981;
-  --color-error: #EF4444;
+  /* --color-accent is for text and strokes; --color-accent-fill is for solid
+     surfaces, which carry --color-on-fill text. */
+  --color-accent: #4F6B58;
+  --color-accent-fill: #2F4A3A;
+  --color-accent-hover: #3C5C49;
+  --color-accent-light: rgba(47, 74, 58, 0.1);
+  --color-accent-glow: rgba(47, 74, 58, 0.22);
+  --color-btn-text: #E8ECE4;
+  --color-on-fill: #E8ECE4;
+
+  --color-available: #4F6B58;
+  --color-available-bg: rgba(47, 74, 58, 0.1);
+
+  --color-border: #C5CEC0;
+  --color-border-hover: rgba(31, 42, 34, 0.6);
+  --color-dot-grid: rgba(31, 42, 34, 0.06);
+
+  --color-nav-bg: rgba(232, 236, 228, 0.92);
+  --color-input-bg: #F1F4EE;
+  --color-modal-bg: #F1F4EE;
+  --color-modal-header-bg: #E1E7DC;
+  --color-modal-overlay: rgba(31, 42, 34, 0.55);
+  --color-shadow: 0 10px 30px rgba(31, 42, 34, 0.12);
+
+  --color-success: #2F7A52;
+  --color-error: #B3402F;
 
   /* Typography */
-  --font-heading: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro", "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-heading: "Archivo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-body: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro", "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  
+
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
   --text-base: 1rem;
@@ -73,57 +77,67 @@
   /* Layout */
   --max-width: 1200px;
   --nav-height: 76px;
-  
-  /* Border Radius */
-  --radius-sm: 10px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
-  --radius-xl: 32px;
+
+  /* Border Radius: squared off */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
   --radius-full: 9999px;
-  
-  /* Shadows */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.35);
-  --shadow-lg: 0 16px 50px rgba(0, 0, 0, 0.5);
-  
+
+  /* Shadows, tinted with the ink hue */
+  --shadow-sm: 0 2px 8px rgba(31, 42, 34, 0.08);
+  --shadow-md: 0 8px 30px rgba(31, 42, 34, 0.1);
+  --shadow-lg: 0 16px 50px rgba(31, 42, 34, 0.14);
+
   /* Transitions */
   --transition-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
   --transition-base: 300ms cubic-bezier(0.16, 1, 0.3, 1);
   --transition-slow: 500ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* --- System Settings: Light Theme --- */
-@media (prefers-color-scheme: light) {
-  :root {
-    --color-bg: #F8FAFC;
-    --color-bg-elevated: #FFFFFF;
-    --color-bg-card: #FFFFFF;
-    --color-bg-card-hover: #F1F5F9;
-    
-    --color-text: #0F172A;
-    --color-text-secondary: #1E293B;
-    --color-text-muted: #64748B;
-    
-    --color-accent: #0F172A;
-    --color-accent-hover: #1E293B;
-    --color-accent-light: rgba(15, 23, 42, 0.08);
-    --color-accent-glow: rgba(15, 23, 42, 0.15);
-    --color-btn-text: #FFFFFF;
-    
-    --color-available: #2563EB;
-    --color-available-bg: rgba(37, 99, 235, 0.1);
+/* --- Dark theme: deep forest ink, the same sage as accent. Selected by the
+   data-theme attribute that the inline script in index.html and the toggle
+   in the navbar both set. --- */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --color-bg: #131A15;
+  --color-bg-elevated: #1B2420;
+  --color-bg-card: #1A221D;
+  --color-bg-card-hover: #212B25;
 
-    --color-border: rgba(15, 23, 42, 0.1);
-    --color-border-hover: rgba(15, 23, 42, 0.25);
-    --color-dot-grid: rgba(15, 23, 42, 0.04);
+  --color-text: #E8ECE4;
+  --color-text-secondary: #C3CCC4;
+  --color-text-muted: #93A096;
 
-    --color-nav-bg: rgba(248, 250, 252, 0.88);
-    --color-input-bg: #FFFFFF;
-    --color-modal-bg: #FFFFFF;
-    --color-modal-header-bg: #F1F5F9;
-    --color-modal-overlay: rgba(15, 23, 42, 0.5);
-    --color-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
-  }
+  --color-accent: #A9C2B0;
+  --color-accent-fill: #A9C2B0;
+  --color-accent-hover: #BCD2C2;
+  --color-accent-light: rgba(169, 194, 176, 0.12);
+  --color-accent-glow: rgba(169, 194, 176, 0.25);
+  --color-btn-text: #131A15;
+  --color-on-fill: #131A15;
+
+  --color-available: #A9C2B0;
+  --color-available-bg: rgba(169, 194, 176, 0.12);
+
+  --color-border: rgba(232, 236, 228, 0.14);
+  --color-border-hover: rgba(169, 194, 176, 0.55);
+  --color-dot-grid: rgba(232, 236, 228, 0.05);
+
+  --color-nav-bg: rgba(19, 26, 21, 0.9);
+  --color-input-bg: rgba(232, 236, 228, 0.04);
+  --color-modal-bg: #1B2420;
+  --color-modal-header-bg: rgba(232, 236, 228, 0.04);
+  --color-modal-overlay: rgba(19, 26, 21, 0.86);
+  --color-shadow: 0 16px 50px rgba(0, 0, 0, 0.55);
+
+  --color-success: #4FBF8A;
+  --color-error: #E5705F;
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 16px 50px rgba(0, 0, 0, 0.55);
 }
 
 /* --- Reset & Base --- */
@@ -152,6 +166,17 @@ body {
   overflow-x: hidden;
 }
 
+/* Film grain. Fixed and pointer-events-none so it never repaints with scroll. */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
 #root {
   display: flex;
   flex-direction: column;
@@ -167,9 +192,9 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-  font-weight: 400;
-  line-height: 1.2;
-  letter-spacing: -0.025em;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
   color: var(--color-text);
 }
 
@@ -182,7 +207,7 @@ a {
    One ring for everything reachable by keyboard. Inputs opt out because
    .contact__input:focus already draws its own. */
 :focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-text);
   outline-offset: 3px;
   border-radius: var(--radius-sm);
 }
@@ -213,7 +238,7 @@ a {
   left: var(--space-4);
   z-index: 1100;
   padding: var(--space-3) var(--space-5);
-  background: var(--color-accent);
+  background: var(--color-accent-fill);
   color: var(--color-btn-text);
   border-radius: var(--radius-sm);
   font-size: var(--text-sm);
@@ -287,8 +312,6 @@ ul, ol {
   background: var(--color-bg-card);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   transition: all var(--transition-base);
   overflow: hidden;
 }
@@ -298,7 +321,6 @@ ul, ol {
   background: var(--color-bg-card-hover);
   border-color: var(--color-border-hover);
   transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
 }
 
 /* --- Button Styles --- */
@@ -318,9 +340,8 @@ ul, ol {
 }
 
 .btn-primary {
-  background: var(--color-accent);
+  background: var(--color-accent-fill);
   color: var(--color-btn-text);
-  box-shadow: 0 4px 16px var(--color-accent-glow);
 }
 
 .btn-primary:hover {
@@ -331,16 +352,15 @@ ul, ol {
 }
 
 .btn-outline {
-  background: rgba(255, 255, 255, 0.04);
+  background: transparent;
   color: var(--color-text);
-  border: 1px solid var(--color-border);
+  border: 1.5px solid var(--color-text);
 }
 
 .btn-outline:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: var(--color-text);
+  color: var(--color-bg);
   transform: translateY(-2px);
-  color: var(--color-text);
 }
 
 .btn-arrow {
@@ -376,8 +396,8 @@ ul, ol {
 
 .section-title {
   font-size: clamp(2rem, 4vw, var(--text-5xl));
-  font-weight: 400;
-  letter-spacing: -0.03em;
+  font-weight: 700;
+  letter-spacing: -0.04em;
 }
 
 .section-subtitle {
@@ -406,16 +426,16 @@ ul, ol {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0A0A0A;
+  background: var(--color-bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--color-border);
   border-radius: var(--radius-full);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent);
+  background: var(--color-accent-fill);
 }
 
 /* --- Responsive --- */

@@ -1,7 +1,6 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { useForm, ValidationError } from '@formspree/react';
 import AnimatedSection, { AnimatedItem } from './AnimatedSection';
-import MagneticButton from './MagneticButton';
 
 export default function Contact() {
   const [state, handleSubmit] = useForm("mnpaplwg");
@@ -154,12 +153,11 @@ export default function Contact() {
             <ValidationError prefix="Message" field="message" errors={state.errors} />
           </motion.div>
 
-          <MagneticButton
+          <button
             type="submit"
             className="btn btn-primary contact__submit"
             disabled={state.submitting}
             id="contact-submit"
-            strength={0.25}
           >
             {state.submitting ? (
               <>
@@ -175,7 +173,7 @@ export default function Contact() {
                 </svg>
               </>
             )}
-          </MagneticButton>
+          </button>
 
           <AnimatePresence mode="wait">
             {state.succeeded && (

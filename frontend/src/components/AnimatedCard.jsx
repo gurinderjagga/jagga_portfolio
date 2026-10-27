@@ -2,13 +2,13 @@ import { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react';
 
 /**
- * AnimatedCard: interactive card with 3D perspective tilt on hover.
+ * AnimatedCard: card with an optional 3D tilt that follows the pointer. Off by default.
  * Uses useMotionValue outside the React render cycle for smooth 60fps animation.
  */
 export default function AnimatedCard({
   children,
   className = '',
-  enableTilt = true,
+  enableTilt = false,
   id,
   onClick,
   tabIndex,
@@ -60,8 +60,7 @@ export default function AnimatedCard({
             }
           : undefined
       }
-      whileHover={{ scale: 1.02, transition: { type: 'spring', stiffness: 300, damping: 25 } }}
-      whileTap={{ scale: 0.98 }}
+      whileTap={{ scale: 0.99 }}
     >
       {children}
     </motion.div>

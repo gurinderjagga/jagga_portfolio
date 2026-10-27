@@ -25,7 +25,7 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ type: 'spring', stiffness: 80, damping: 18 }}
           >
-            <p style={{ fontSize: '2rem', fontWeight: 400, marginBottom: '0.5rem', color: 'var(--color-text)' }}>
+            <p style={{ fontSize: '2rem', fontWeight: 800, marginBottom: '0.5rem', color: 'var(--color-text)' }}>
               Jagga Digital
             </p>
             <p className="footer__tagline">

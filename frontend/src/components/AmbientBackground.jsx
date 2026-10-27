@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 const orbs = [
   {
     id: 1,
-    color: 'radial-gradient(circle, rgba(226, 232, 240, 0.06) 0%, rgba(226, 232, 240, 0.01) 45%, transparent 70%)',
+    color: 'radial-gradient(circle, rgba(79, 107, 88, 0.035) 0%, rgba(79, 107, 88, 0.006) 45%, transparent 70%)',
     size: 700,
     initialX: '20%',
     initialY: '20%',
@@ -15,7 +15,7 @@ const orbs = [
   },
   {
     id: 2,
-    color: 'radial-gradient(circle, rgba(148, 163, 184, 0.03) 0%, rgba(148, 163, 184, 0.005) 45%, transparent 70%)',
+    color: 'radial-gradient(circle, rgba(79, 107, 88, 0.025) 0%, rgba(79, 107, 88, 0.004) 45%, transparent 70%)',
     size: 650,
     initialX: '75%',
     initialY: '60%',

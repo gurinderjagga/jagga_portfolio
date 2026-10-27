@@ -8,7 +8,6 @@ const team = [
     role: 'Founder & Creative Director',
     bio: 'Visionary leader with a passion for crafting digital brands that leave a lasting impression. Drives the creative vision behind every project.',
     avatar: 'GJ',
-    color: 'var(--color-accent)',
   },
   {
     id: 2,
@@ -16,7 +15,6 @@ const team = [
     role: 'Backend Developer',
     bio: 'Architecting robust, scalable backends that power seamless experiences. Specialist in APIs, databases, and cloud infrastructure.',
     avatar: 'SN',
-    color: '#3B82F6',
     linkedin: 'https://www.linkedin.com/in/shubham-nautiyal-7869992a7/',
   },
   {
@@ -25,7 +23,6 @@ const team = [
     role: 'Frontend Developer',
     bio: 'Bringing designs to life with pixel-perfect precision. Expert in React, animations, and building interfaces users love to interact with.',
     avatar: 'YV',
-    color: '#10B981',
     linkedin: 'https://www.linkedin.com/in/yuvraj-nln-340147167/',
   },
 ];
@@ -134,12 +131,7 @@ export default function About() {
               >
                 <motion.div
                   className="about__member-avatar"
-                  style={{ background: member.color }}
-                  whileHover={{
-                    scale: 1.1,
-                    boxShadow: `0 0 24px ${member.color}50`,
-                    transition: { type: 'spring', stiffness: 300, damping: 20 },
-                  }}
+                  data-tone={member.id}
                 >
                   {member.avatar}
                 </motion.div>

@@ -4,65 +4,41 @@ import AnimatedSection, { AnimatedItem } from './AnimatedSection';
 const services = [
   {
     id: 1,
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10" />
-        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
-      </svg>
-    ),
-    title: 'Product Strategies',
-    description: 'Strategic product roadmapping, codebase audits, performance tuning, and growth advice for digital products.',
-    features: ['Product Roadmapping', 'UX & Conversion Audit', 'Core Web Vitals Tuning', 'Technical Growth Strategy'],
+    title: 'Product strategy',
+    description: 'Roadmapping, codebase audits, performance tuning, and growth advice for digital products.',
+    features: ['Product roadmapping', 'UX and conversion audit', 'Core Web Vitals tuning', 'Technical growth strategy'],
   },
   {
     id: 2,
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 19l7-7 3 3-7 7-3-3z" />
-        <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
-        <path d="M2 2l7.586 7.586" />
-        <circle cx="11" cy="11" r="2" />
-      </svg>
-    ),
-    title: 'UI/UX Designing',
-    description: 'Human-centered interfaces focused on clarity, user retention, smooth interactions, and multi-device accessibility.',
-    features: ['Interface & Interaction Design', 'Design Systems', 'Interactive Prototypes', 'User Journey Mapping'],
+    title: 'UI/UX design',
+    description: 'Interfaces built around clarity, retention, smooth interaction, and access on every device.',
+    features: ['Interface and interaction design', 'Design systems', 'Interactive prototypes', 'User journey mapping'],
   },
   {
     id: 3,
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="16 18 22 12 16 6" />
-        <polyline points="8 6 2 12 8 18" />
-      </svg>
-    ),
-    title: 'Custom Development',
-    description: 'Tailored software solutions, custom APIs, and backend architectures built from scratch to fit your exact business goals.',
-    features: ['Custom SaaS Solutions', 'API & Microservices', 'Cloud Architecture', 'Database Design'],
+    title: 'Custom development',
+    description: 'Software, APIs, and backends built from scratch to fit your exact business goals.',
+    features: ['Custom SaaS solutions', 'API and microservices', 'Cloud architecture', 'Database design'],
   },
   {
     id: 4,
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="3" width="20" height="14" rx="2" />
-        <path d="M8 21h8" />
-        <path d="M12 17v4" />
-        <path d="M7 8l3 3-3 3" />
-        <path d="M13 14h4" />
-      </svg>
-    ),
-    title: 'Web Development',
-    description: 'Modern, responsive websites and web applications built with React, Next.js, and resilient cloud architecture.',
-    features: ['Custom Web Applications', 'Full-Stack Engineering', 'E-Commerce Platforms', 'Responsive Web Apps'],
+    title: 'Web development',
+    description: 'Responsive websites and web applications on React, Next.js, and resilient cloud infrastructure.',
+    features: ['Custom web applications', 'Full-stack engineering', 'E-commerce platforms', 'Responsive web apps'],
   },
 ];
+
+const goToContact = (e) => {
+  e.preventDefault();
+  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+};
 
 export default function Services() {
   return (
     <AnimatedSection id="services" labelledBy="services-title">
       <AnimatedItem>
         <div className="section-header">
-          <span className="section-label">Our Capabilities</span>
+          <span className="section-label">Our capabilities</span>
           <h2 className="section-title" id="services-title">
             What we do <span className="accent-text">best.</span>
           </h2>
@@ -72,82 +48,39 @@ export default function Services() {
         </div>
       </AnimatedItem>
 
-      <div className="services__grid">
+      {/* Ruled rows, not cards: four parallel offerings read faster as a list
+          than as four boxes, and every detail stays visible without hover. */}
+      <ol className="services__list">
         {services.map((service, index) => (
-          <motion.div
+          <motion.li
             key={service.id}
-            className="services__card card-dark"
+            className="services__row"
             id={`service-card-${service.id}`}
-            initial={{ opacity: 0, filter: 'blur(4px)' }}
-            whileInView={{ opacity: 1, filter: 'blur(0px)' }}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
-            transition={{
-              duration: 0.6,
-              delay: index * 0.1,
-            }}
+            transition={{ type: 'spring', stiffness: 90, damping: 18, delay: index * 0.06 }}
           >
-            <motion.div className="services__card-icon-wrapper">
-              {/* whileInView rather than animate: an infinite loop on `animate`
-                  keeps compositing even when the section is far off screen. */}
-              <motion.div
-                className="services__card-icon"
-                whileInView={{
-                  y: [0, -4, 0],
-                  rotate: [0, -5, 5, 0]
-                }}
-                viewport={{ once: false, amount: 0.2 }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                  delay: index * 0.4,
-                }}
-              >
-                {service.icon}
-              </motion.div>
-            </motion.div>
-            <h3 className="services__card-title">{service.title}</h3>
-            <p className="services__card-description">{service.description}</p>
-            <ul className="services__card-features">
-              {service.features.map((feature, featureIndex) => (
-                <motion.li
-                  key={feature}
-                  className="services__card-feature"
-                  initial={{ opacity: 0, x: -15 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    type: 'spring',
-                    stiffness: 100,
-                    damping: 18,
-                    delay: index * 0.1 + featureIndex * 0.06,
-                  }}
-                >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth="2.5">
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                  {feature}
-                </motion.li>
+            <span className="services__n" aria-hidden="true">0{service.id}</span>
+            <div className="services__main">
+              <h3 className="services__title">{service.title}</h3>
+              <p className="services__description">{service.description}</p>
+            </div>
+            <ul className="services__features">
+              {service.features.map((feature) => (
+                <li key={feature}>{feature}</li>
               ))}
             </ul>
-            <a 
-              href="#contact" 
-              className="services__card-link"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <a href="#contact" className="services__link" onClick={goToContact}>
+              Discuss this project
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M5 12h14" />
                 <path d="M12 5l7 7-7 7" />
               </svg>
-              Discuss this project
             </a>
-
-          </motion.div>
+          </motion.li>
         ))}
-      </div>
+      </ol>
     </AnimatedSection>
   );
 }

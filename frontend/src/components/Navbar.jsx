@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import ThemeToggle from './ThemeToggle';
+import { useTheme } from '../theme';
 
 const navLinks = [
   { id: 'home', label: 'Home' },
@@ -22,6 +24,8 @@ export default function Navbar() {
      tab through four invisible links. */
   const [isDrawer, setIsDrawer] = useState(false);
   const linksRef = useRef([]);
+  const theme = useTheme();
+  const logoStem = theme === 'light' ? 'logo1' : 'logo';
 
   useEffect(() => {
     const query = window.matchMedia('(max-width: 768px)');
@@ -120,14 +124,12 @@ export default function Navbar() {
           whileTap={{ scale: 0.98 }}
         >
           <a href="#home" className="navbar__logo" onClick={(e) => scrollToSection(e, 'home')}>
-            {/* Renders at 64px; 192 covers 3x displays. WebP first, PNG
-                fallback, light-scheme variant ahead of each. */}
+            {/* Renders at 64px; 192 covers 3x displays. The light variant
+                follows the toggle, not the OS setting. */}
             <picture>
-              <source srcSet="/logo1-192.webp" type="image/webp" media="(prefers-color-scheme: light)" />
-              <source srcSet="/logo1-192.png" media="(prefers-color-scheme: light)" />
-              <source srcSet="/logo-192.webp" type="image/webp" />
+              <source srcSet={`/${logoStem}-192.webp`} type="image/webp" />
               <img
-                src="/logo-192.png"
+                src={`/${logoStem}-192.png`}
                 alt="Jagga Digital"
                 className="navbar__logo-img"
                 width="192"
@@ -176,7 +178,9 @@ export default function Navbar() {
         </div>
 
         <div className="navbar__right">
+          <ThemeToggle />
           <motion.div
+            className="navbar__cta-wrap"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
           >
